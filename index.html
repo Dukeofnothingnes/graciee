@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Grace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing_Script:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff99cc, #cc66ff, #66ccff);
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      padding: 50px;
+      overflow-x: hidden;
+      position: relative;
+      animation: backgroundGlow 10s ease-in-out infinite;
+    }
+
+    @keyframes backgroundGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #message, #forgiveSection {
+      display: none;
+      margin-top: 30px;
+    }
+
+    input, button {
+      padding: 12px 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      margin-top: 15px;
+      font-family: 'Great Vibes', cursive;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    input {
+      background-color: #fff0f5;
+      color: #333;
+    }
+
+    button {
+      background: linear-gradient(to right, #ff69b4, #ff1493);
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(255, 105, 180, 0.7);
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      color: #cc3366;
+      font-size: 3.5em;
+      text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .note {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.4em;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #333;
+      background: rgba(255, 245, 247, 0.9);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(204, 51, 102, 0.3);
+      border: 2px solid #ff99cc;
+    }
+
+    .hearts {
+      font-size: 1.5em;
+      color: #ff1493;
+    }
+
+    .forgive-buttons {
+      margin-top: 20px;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: float 4s ease-in forwards;
+      z-index: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    .heart.sparkle::after {
+      content: "✨";
+      font-size: 10px;
+      color: #ffd700;
+      left: -5px;
+      top: -5px;
+      animation: sparkle 1s infinite;
+    }
+
+    @keyframes float {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-500px) scale(1.8) rotate(45deg);
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .calligraphy-decor {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2em;
+      color: #ff69b4;
+      text-shadow: 1px 1px 3px rgba(255, 20, 147, 0.5);
+      margin: 20px 0;
+    }
+
+    .sparkle-bg {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ffd700;
+      border-radius: 50%;
+      animation: floatSparkle 6s infinite ease-in;
+      z-index: -1;
+    }
+
+    @keyframes floatSparkle {
+      0% {
+        opacity: 0.7;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-600px) scale(1.2);
+      }
+    }
+
+    #romanticResponse {
+      display: none;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3em;
+      color: #cc3366;
+      margin-top: 20px;
+      background: rgba(255, 245, 247, 0.9);
+      padding: 15px;
+      border-radius: 10px;
+      border: 2px solid #ff99cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="calligraphy-decor">To My Dearest Grace 🌸</div>
+  <h1>Hey Grace </h1>
+  <p class="calligraphy-decor"></p>
+  <p>Enter the password:</p>
+  <input type="password" id="password" placeholder="Hint: it's a name you know..." />
+  <br>
+  <button onclick="checkPassword()">Unlock</button>
+
+  <div id="message">
+    <p class="note">
+      Hi Grace, it's Barry.<br><br>
+      Sorry for what I said last night. I realized that I messed up, and I shouldn't have said it.<br><br>
+      Hope you'll forgive me. I know I might be weird sometimes — please bear with me.<br>
+      I'm not usually like that.<br><br>
+      Sorry again 💖💖<br><br>
+      (I don't know how to write a good apology, so this is the best I could come up with.)
+    </p>
+    <div id="forgiveSection" class="forgive-buttons">
+      <h2 class="calligraphy-decor">Do you forgive me?</h2>
+      <button onclick="showerHearts()">Yes</button>
+      <button onclick="showRomanticResponse()">No</button>
+    </div>
+    <div id="romanticResponse">
+      l'm sorry grace 💕
+    </div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value.trim();
+      if (input === "Barry") {
+        document.getElementById("message").style.display = "block";
+        document.getElementById("forgiveSection").style.display = "block";
+        playSound();
+        createSparkles(20);
+      } else {
+        alert("That's not the password. Try again?");
+      }
+    }
+
+    function playSound() {
+      const audio = new Audio('https://freesound.org/data/previews/316/316847_4939433-lq.mp3'); // Soft chime sound
+      audio.play().catch(() => console.log("Audio play failed"));
+    }
+
+    function showerHearts() {
+      for (let i = 0; i < 80; i++) {
+        createHeart();
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      if (Math.random() > 0.5) heart.classList.add("sparkle");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.backgroundColor = randomColor();
+      heart.style.width = Math.random() * 20 + 15 + "px";
+      heart.style.height = heart.style.width;
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    function createSparkles(count) {
+      for (let i = 0; i < count; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.classList.add("sparkle-bg");
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 7000);
+      }
+    }
+
+    function randomColor() {
+      const colors = ["#ff69b4", "#ff1493", "#ff6ec7", "#ffc0cb", "#ff99cc", "#cc66ff", "#ff3333"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function showRomanticResponse() {
+      const response = document.getElementById("romanticResponse");
+      response.style.display = "block";
+      showerHearts();
+      setTimeout(() => response.style.display = "none", 5000);
+    }
+
+    // Start with some sparkles on page load
+    createSparkles(10);
+  </script>
+</body>
+</html>
